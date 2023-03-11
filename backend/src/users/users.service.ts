@@ -13,19 +13,19 @@ export class UsersService {
     return createdUser.save();
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return this.userModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return this.userModel.findOne({ _id: id }).exec();
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.userModel.updateOne({ _id: id }, updateUserDto).exec();
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userModel.findOneAndDelete({ _id: id }).exec();
   }
 }
